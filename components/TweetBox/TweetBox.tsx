@@ -16,6 +16,16 @@ export function TweetBox() {
     setCount(280 - text.length);
   }
 
+  function getTextColor(count: number) {
+    if(count > 10) {
+      return 'grey';
+    } else if(count > -1) {
+      return 'orange';
+    } else {
+      return 'red';
+    }
+  }
+
   return (
     <SafeAreaView>
       <Header />
@@ -30,7 +40,7 @@ export function TweetBox() {
       />
       <Text
         style={{
-          color: count > 10 ? 'grey' : count > -1 ? 'orange' : 'red',
+          color: getTextColor(count),
           alignSelf: 'center',
           fontSize: 24,
           padding: 18,
