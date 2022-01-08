@@ -9,21 +9,21 @@ import {
 } from 'react-native';
 import {Header} from 'react-native/Libraries/NewAppScreen';
 
+function getColor(length: number): string {
+  if (length > 10) {
+    return '#64748b';
+  } else if (length > -1) {
+    return 'orange';
+  } else {
+    return 'red';
+  }
+}
+
 export function TweetBox() {
   const [count, setCount] = useState(280);
 
   function changeHandler(text: string) {
     setCount(280 - text.length);
-  }
-
-  function getTextColor(length: number) {
-    if (length > 10) {
-      return 'grey';
-    } else if (length > -1) {
-      return 'orange';
-    } else {
-      return 'red';
-    }
   }
 
   return (
@@ -36,15 +36,9 @@ export function TweetBox() {
         onChangeText={changeHandler}
         multiline
         numberOfLines={4}
-        style={styles.textInput}
+        style={[styles.textInput, {backgroundColor: getColor(count)}]}
       />
-      <Text
-        style={{
-          color: getTextColor(count),
-          alignSelf: 'center',
-          fontSize: 24,
-          padding: 18,
-        }}>
+      <Text style={[styles.msgText, {color: getColor(count)}]}>
         {count} characters left
       </Text>
       <View style={styles.tweetBtn}>
@@ -71,14 +65,19 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   textInput: {
-    minHeight: 150,
-    borderWidth: 5,
+    minHeight: 200,
+    borderWidth: 2,
     borderColor: 'grey',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 15,
+    borderRadius: 30,
     fontSize: 20,
     margin: 20,
     padding: 10,
+    color: 'blue',
+  },
+  msgText: {
+    alignSelf: 'center',
+    fontSize: 24,
+    padding: 18,
   },
   tweetBtn: {
     backgroundColor: '#cffafe',
