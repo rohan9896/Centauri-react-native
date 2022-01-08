@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Button,
 } from 'react-native';
-import { Header } from 'react-native/Libraries/NewAppScreen';
+import {Header} from 'react-native/Libraries/NewAppScreen';
 
 export function TweetBox() {
   const [count, setCount] = useState(280);
@@ -16,10 +16,10 @@ export function TweetBox() {
     setCount(280 - text.length);
   }
 
-  function getTextColor(count: number) {
-    if(count > 10) {
+  function getTextColor(length: number) {
+    if (length > 10) {
       return 'grey';
-    } else if(count > -1) {
+    } else if (length > -1) {
       return 'orange';
     } else {
       return 'red';
@@ -51,7 +51,7 @@ export function TweetBox() {
         <Button
           color="#0284c7"
           title="Tweet"
-          disabled={count<0}
+          disabled={count < 0}
           accessibilityLabel="Click here to tweet!"
         />
       </View>
@@ -62,7 +62,7 @@ export function TweetBox() {
 const styles = StyleSheet.create({
   heading: {
     alignItems: 'center',
-    backgroundColor: "white"
+    backgroundColor: 'white',
   },
   headingText: {
     fontSize: 32,
@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 10,
     padding: 16,
-    margin: 10
+    margin: 10,
   },
 });
